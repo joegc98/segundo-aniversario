@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para mi Poto loco ❤️</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
+
+:root {
+  --wine:#641b35;
+  --deep:#3c1024;
+  --pink:#e9b8c5;
+  --cream:#fff8f1;
+  --rose:#b65d78;
+  --text:#513541;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--cream);color:var(--text);
+  font-family:'DM Sans',sans-serif;line-height:1.75;
+  overflow-x: hidden;
+}
+button{font:inherit;cursor:pointer}
+
+/* Fondo animado de corazones flotantes */
+.floating-hearts-container {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.floating-heart-particle {
+  position: absolute;
+  color: #b65d78;
+  opacity: 0.25;
+  animation: floatUp 8s linear infinite;
+  font-size: 20px;
+}
+@keyframes floatUp {
+  0% { transform: translateY(100vh) scale(0.6); opacity: 0; }
+  20% { opacity: 0.35; }
+  80% { opacity: 0.35; }
+  100% { transform: translateY(-10vh) scale(1.4); opacity: 0; }
+}
+
+/* Pantalla de Bienvenida / Cover Inicial */
+.welcome-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(135deg, #3c1024, #792d49 60%, #b65d78);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  padding: 20px;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+.welcome-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.welcome-box {
+  max-width: 600px;
+}
+.welcome-box h1 {
+  font: 500 clamp(36px, 7vw, 64px)/1.1 'Playfair Display',serif;
+  margin-bottom: 15px;
+}
+.welcome-box p {
+  font-size: 17px;
+  color: #f9e8ed;
+  margin-bottom: 30px;
+}
+.enter-btn {
+  background: #fff8f1;
+  color: var(--wine);
+  border: 1px solid #f4cbd5;
+  padding: 16px 32px;
+  border-radius: 40px;
+  font-weight: 600;
+  font-size: 17px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+.enter-btn:hover {
+  transform: translateY(-4px) scale(1.05);
+  background: white;
+}
+
+/* Hero Section */
+.hero{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:35px 20px;position:relative;overflow:hidden;
+  color:white;background:linear-gradient(145deg,#3c1024,#792d49 60%,#b65d78);
+  z-index: 1;
+}
+.hero:before,.hero:after{
+  content:"";position:absolute;border:1px solid #ffffff30;border-radius:50%;
+  width:360px;height:360px;animation:float 8s ease-in-out infinite;
+}
+.hero:after{width:500px;height:500px;animation-delay:2s}
+@keyframes float{50%{transform:translateY(-20px) scale(1.04)}}
+.hero-content{position:relative;z-index:1;max-width:720px}
+.eyebrow{letter-spacing:4px;text-transform:uppercase;font-size:11px;color:#f4cbd5}
+.hero h1{
+  font:500 clamp(48px,9vw,88px)/1.1 'Playfair Display',serif;
+  margin:20px 0;
+}
+.hero p{font-size:17px;color:#f9e8ed}
+.open-btn,.main-btn{
+  border:1px solid #f4cbd5;background:#fff8f1;color:var(--wine);
+  padding:14px 27px;border-radius:40px;margin-top:25px;
+  transition:.3s;
+}
+.open-btn:hover,.main-btn:hover{transform:translateY(-3px);background:white}
+.heart{font-size:25px;display:block;margin:15px}
+
+section{padding:85px 20px; position: relative; z-index: 1;}
+.container{max-width:940px;margin:auto}
+.section-tag{text-transform:uppercase;letter-spacing:3px;color:var(--rose);font-size:11px}
+h2{
+  font:500 clamp(32px,5vw,48px)/1.2 'Playfair Display',serif;
+  color:var(--wine);margin:12px 0 25px;
+}
+h3{font:500 25px 'Playfair Display',serif;color:var(--wine)}
+.intro{text-align:center;max-width:720px;margin:auto}
+.intro p{font-size:17px}
+
+.counter-section{background:#f4e4e5;text-align:center}
+.counter{
+  display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin:30px 0;
+}
+.counter-item{
+  background:#fff9f4;padding:18px 23px;border-radius:14px;
+  min-width:90px;box-shadow:0 8px 25px #641b3510;
+  transition: transform 0.3s ease;
+}
+.counter-item:hover { transform: translateY(-5px); }
+.counter-item strong{display:block;font:36px 'Playfair Display',serif;color:var(--wine)}
+.counter-item span{font-size:11px;text-transform:uppercase;letter-spacing:1px}
+
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:35px;align-items:center}
+.story-card{
+  background:white;border-radius:20px;padding:30px;
+  box-shadow:0 12px 35px #641b3510;
+  transition: all 0.3s ease;
+}
+.story-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px #641b3518; }
+.story-card p{margin-bottom:0}
+.story-symbol{font-size:65px;text-align:center}
+
+.gallery-section{background:#f7ece9}
+.gallery-head{text-align:center}
+.gallery{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:30px;
+}
+.photo{
+  background:white;border-radius:15px;padding:9px;
+  box-shadow:0 8px 25px #641b3510;min-width:0;
+  transition: all 0.3s ease;
+}
+.photo:hover { transform: translateY(-4px); }
+.photo img{width:100%;height:230px;object-fit:cover;border-radius:10px;display:block}
+.photo p{font:italic 16px 'Playfair Display',serif;text-align:center;margin:10px 0 5px}
+.photo-controls{display:flex;justify-content:center;gap:7px}
+.photo-controls button{
+  border:0;background:#f3e1e5;color:var(--wine);
+  border-radius:20px;padding:5px 10px;font-size:12px;
+  transition: background 0.2s;
+}
+.photo-controls button:hover:not(:disabled) { background: #e9b8c5; }
+
+.quote-section{
+  text-align:center;color:white;
+  background:linear-gradient(135deg,#53172f,#9a4964);
+}
+.quote-section blockquote{
+  max-width:750px;margin:20px auto;
+  font:italic clamp(25px,4vw,38px)/1.5 'Playfair Display',serif;
+}
+.quote-section p{color:#f5dce3}
+
+.letter{
+  background:white;border-radius:20px;padding:clamp(25px,6vw,55px);
+  box-shadow:0 12px 35px #641b3510;max-width:760px;margin:auto;
+}
+.letter p{font-size:16px}
+.signature{font:italic 29px 'Playfair Display',serif;color:var(--wine);margin-top:30px}
+
+.promises{background:#f4e4e5}
+.promise-list{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.promise{
+  background:#fffaf5;padding:22px;border-radius:15px;
+  display:flex;gap:13px;align-items:flex-start;
+  transition: transform 0.3s ease;
+}
+.promise:hover { transform: translateX(4px); }
+.promise span{color:var(--rose);font-size:22px}
+
+.music{text-align:center;background:#fff}
+.music-box{
+  max-width:600px;margin:auto;padding:30px;
+  border-radius:20px;background:#f8e9e9;
+  box-shadow: 0 8px 30px rgba(100,27,53,0.06);
+}
+
+/* Estilo del Botón Flotante de Música */
+.floating-music-btn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 999;
+  background: var(--deep);
+  color: white;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  box-shadow: 0 6px 20px rgba(60, 16, 36, 0.3);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.floating-music-btn:hover {
+  transform: translateY(-3px);
+  background: var(--wine);
+  box-shadow: 0 8px 25px rgba(100, 27, 53, 0.4);
+}
+
+footer{
+  background:var(--deep);color:#f6dfe6;text-align:center;padding:45px 20px;
+}
+footer p{margin:5px}
+footer .final-heart{font-size:30px}
+
+@media(max-width:650px){
+  .story-grid{grid-template-columns:1fr}
+  .gallery{grid-template-columns:repeat(2,1fr)}
+  .photo img{height:180px}
+  .promise-list{grid-template-columns:1fr}
+  .floating-music-btn { bottom: 15px; right: 15px; padding: 10px 16px; font-size: 13px; }
+}
+@media(max-width:390px){.gallery{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- Partículas flotantes de corazones -->
+<div class="floating-hearts-container" id="heartsContainer"></div>
+
+<!-- Pantalla de Bienvenida (Rompehielos / Activa música al primer toque) -->
+<div id="welcomeOverlay" class="welcome-overlay">
+  <div class="welcome-box">
+    <div class="eyebrow" style="color:#f4cbd5; margin-bottom:10px;">Segundo Aniversario</div>
+    <h1>Para mi Poto loco ❤️</h1>
+    <p>He preparado este pequeño rincón con nuestros mejores recuerdos para celebrar lo mucho que te amo.</p>
+    <button id="enterBtn" class="enter-btn">Toca para abrir tu sorpresa ✨</button>
+  </div>
+</div>
+
+<!-- Botón Flotante de Música para iwont.mp3 -->
+<button id="musicToggleBtn" class="floating-music-btn">
+  <span>♫</span> <span id="musicBtnText">Activar nuestra música</span>
+</button>
+
+<!-- Elemento de audio oculto para iwont.mp3 -->
+<audio id="bgMusic" preload="auto" loop>
+  <source src="audio/iwont.mp3" type="audio/mpeg">
+</audio>
+
+<header class="hero">
+  <div class="hero-content">
+    <div class="eyebrow">Una historia, dos corazones, infinitos recuerdos</div>
+    <span class="heart">♡</span>
+    <h1>Para mi<br>Poto loco</h1>
+    <p>Hay historias que no comienzan como uno imagina,<br>
+    pero terminan convirtiéndose en lo más bonito de la vida.</p>
+    <button class="open-btn" onclick="document.getElementById('inicio').scrollIntoView({behavior:'smooth'})">
+      Abrir nuestro recuerdo ♥
+    </button>
+  </div>
+</header>
+
+<section id="inicio">
+  <div class="container intro">
+    <div class="section-tag">01 · Nuestro comienzo</div>
+    <h2>Y pensar que todo empezó sin imaginarlo...</h2>
+    <p>
+      Nos conocimos en la Clínica San Felipe. Yo estaba cubriendo
+      mi mes de turno por camacho y, en ese momento, quizás ninguno de los
+      dos imaginaba lo que el destino estaba preparando.
+    </p>
+    <p>
+      No hubo un clic sin pensarlo, ni una película de amor a primera vista.
+      Pero la vida tenía otros planes. Poco a poco nos acercó,
+      nos regaló momentos y nos dio una historia que hoy es nuestra.
+    </p>
+    <span class="heart" style="color:#b65d78">♡</span>
+    <p><em>Porque a veces lo más bonito llega cuando menos lo esperamos.</em></p>
+  </div>
+</section>
+
+<section class="counter-section">
+  <div class="container">
+    <div class="section-tag">02 · Nuestro tiempo</div>
+    <h2>Desde aquel 1 de noviembre de 2024</h2>
+    <p id="counterSubtitle" style="font-weight:500; color:var(--wine); margin-bottom:10px;">Sumando momentos mágicos a tu lado...</p>
+    <p>El tiempo pasa, pero sigo eligiéndote.</p>
+    <div class="counter" id="counter">
+      <div class="counter-item"><strong id="days">0</strong><span>Días</span></div>
+      <div class="counter-item"><strong id="hours">0</strong><span>Horas</span></div>
+      <div class="counter-item"><strong id="minutes">0</strong><span>Minutos</span></div>
+      <div class="counter-item"><strong id="seconds">0</strong><span>Segundos</span></div>
+    </div>
+    <p><em>Y todavía nos quedan tantos momentos por vivir...</em></p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-tag">03 · Lo que hemos vivido</div>
+    <h2>Pequeños momentos, recuerdos enormes</h2>
+    <div class="story-grid">
+      <div class="story-card">
+        <div class="story-symbol">🎂</div>
+        <h3>Nuestros cumpleaños</h3>
+        <p>
+          Celebrar nuestra vida, vernos sonreír y compartir esos días especiales
+          contigo. Son recuerdos que guardo con muchísimo cariño.
+        </p>
+      </div>
+      <div class="story-card">
+        <div class="story-symbol">🌅</div>
+        <h3>Nuestra aventura en Pachacámac</h3>
+        <p>
+          Un lugar, una salida y un recuerdo más para nuestra historia.
+          De esos momentos que hacen que cualquier día se vuelva especial por todo lo ocurrido en ese dia. Jejeje
+        </p>
+      </div>
+      <div class="story-card">
+        <div class="story-symbol">🌷</div>
+        <h3>Nuestros sábados</h3>
+        <p>
+          Esas salidas de casi todos los sábados que se convirtieron
+          en una bonita costumbre. No importa tanto el lugar,
+          sino tenerte a mi lado.
+        </p>
+      </div>
+      <div class="story-card">
+        <div class="story-symbol">❤️</div>
+        <h3>Nuestro día a día</h3>
+        <p>
+          Las risas, las conversaciones, las ocurrencias y hasta los
+          momentos sencillos. Todo eso también construye nuestro amor.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery-section">
+  <div class="container">
+    <div class="gallery-head">
+      <div class="section-tag">04 · Nuestro álbum</div>
+      <h2>Una imagen, mil sentimientos</h2>
+      <p>Nuestros momentos favoritos ordenados con amor.</p>
+    </div>
+    <div class="gallery" id="gallery">
+      <!-- Las 16 imágenes fijas se cargarán aquí automáticamente -->
+    </div>
+  </div>
+</section>
+
+<section class="quote-section">
+  <div class="container">
+    <div class="section-tag" style="color:#f4cbd5">05 · Lo que somos</div>
+    <blockquote>
+      “No somos una historia perfecta, somos dos personas que,
+      con sus virtudes y dificultades, siguen encontrando razones
+      para elegirse.”
+    </blockquote>
+    <p>Y eso, para mí, vale muchísimo.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-tag">06 · De corazón</div>
+    <h2>Una carta para ti, Fiorella</h2>
+    <div class="letter">
+      <p>Mi amor, mi Poto loco:</p>
+      <p>
+        Hoy quiero recordarte lo importante que eres para mí.
+        Si alguien me hubiera dicho aquel día en la Clínica San Felipe
+        que una historia tan bonita comenzaría allí, quizás no lo habría
+        imaginado.
+      </p>
+      <p>
+        Hemos compartido momentos hermosos, cumpleaños, salidas,
+        sábados juntos y aventuras que hoy forman parte de nuestros
+        recuerdos favoritos.
+      </p>
+      <p>
+        También hemos pasado por momentos complicados. Hemos sentido
+        el peso de las dificultades económicas y atravesado una pérdida
+        dolorosa. No voy a decir que todo fue fácil, porque no lo fue.
+        Pero valoro cada esfuerzo, cada conversación y cada paso que
+        hemos dado para seguir adelante.
+      </p>
+      <p>
+        Gracias por estar en mi vida, por cada sonrisa, por cada abrazo
+        y por todos esos pequeños detalles que quizás parecen simples,
+        pero que para mí significan muchísimo.
+      </p>
+      <p>
+        No sé exactamente qué nos tiene preparado el futuro, pero sí sé
+        que quiero seguir construyendo recuerdos contigo. Quiero seguir
+        conociéndote, apoyándote, celebrando tus logros y acompañándote
+        también en los días difíciles.
+      </p>
+      <p>
+        Te amo, Fiorella. Y si pudiera volver a aquel primer día,
+        sabiendo todo lo que viviríamos, volvería a elegir caminar
+        hacia ti.
+      </p>
+      <div class="signature">Con todo mi amor, siempre. ♥</div>
+    </div>
+  </div>
+</section>
+
+<section class="promises">
+  <div class="container">
+    <div class="section-tag">07 · Lo que viene</div>
+    <h2>Mis promesas para nosotros</h2>
+    <div class="promise-list">
+      <div class="promise"><span>♡</span><div>Seguir eligiéndote, incluso cuando los días no sean fáciles.</div></div>
+      <div class="promise"><span>♡</span><div>Apoyar tus sueños y celebrar cada uno de tus logros.</div></div>
+      <div class="promise"><span>♡</span><div>Construir juntos una vida con amor, paciencia y comprensión.</div></div>
+      <div class="promise"><span>♡</span><div>No dejar que la rutina nos haga olvidar los pequeños detalles.</div></div>
+      <div class="promise"><span>♡</span><div>Seguir descubriendo lugares y creando nuevas aventuras.</div></div>
+      <div class="promise"><span>♡</span><div>Recordarte siempre lo mucho que te amo y lo valiosa que eres.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="music">
+  <div class="container">
+    <div class="section-tag">08 · Canción para recordar</div>
+    <h2>Que la música nos recuerde</h2>
+    <div class="music-box">
+      <div style="font-size:35px">🎵 ♡ 🎵</div>
+      <p>Una canción especial.</p>
+      <!-- Reproductor de la canción bailando.mp3 -->
+      <audio id="bailandoPlayer" controls preload="auto" style="width:100%; margin-top:15px;">
+        <source src="audio/bailando.mp3" type="audio/mpeg">
+      </audio>
+      <p style="font-size:12px; margin-top:10px;">La música comenzará cuando presiones reproducir.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="final-heart">♥</div>
+  <h2 style="color:#f8dce4">Feliz segundo aniversario</h2>
+  <p>1 de noviembre de 2026</p>
+  <p>Una historia que sigue escribiéndose...</p>
+  <p style="margin-top:20px;font:italic 20px 'Playfair Display',serif">
+    Tú y yo. Hoy, mañana y todos los días que vengan.
+  </p>
+</footer>
+
+<script>
+// Generar corazones flotantes dinámicos en el fondo
+const heartsContainer = document.getElementById('heartsContainer');
+const heartSymbols = ['♥', '♡', '❤'];
+for (let i = 0; i < 18; i++) {
+  const span = document.createElement('span');
+  span.className = 'floating-heart-particle';
+  span.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+  span.style.left = Math.random() * 100 + '%';
+  span.style.animationDuration = (6 + Math.random() * 6) + 's';
+  span.style.animationDelay = (Math.random() * 5) + 's';
+  span.style.fontSize = (16 + Math.random() * 18) + 'px';
+  heartsContainer.appendChild(span);
+}
+
+// Pantalla de bienvenida y activación de música automática al hacer clic
+const welcomeOverlay = document.getElementById('welcomeOverlay');
+const enterBtn = document.getElementById('enterBtn');
+const bgMusic = document.getElementById('bgMusic');
+const musicBtnText = document.getElementById('musicBtnText');
+const bailandoPlayer = document.getElementById('bailandoPlayer');
+
+enterBtn.addEventListener('click', () => {
+  welcomeOverlay.classList.add('hidden');
+  bgMusic.play().then(() => {
+    musicBtnText.textContent = 'Pausar música';
+  }).catch(e => console.log("Audio autoplay prevenido:", e));
+});
+
+const startDate = new Date(2024, 10, 1, 0, 0, 0);
+
+function updateCounter(){
+  const now = new Date();
+  let diff = Math.max(0, now - startDate);
+  const days = Math.floor(diff / 86400000);
+  const hours = Math.floor((diff % 86400000) / 3600000);
+  const minutes = Math.floor((diff % 3600000) / 60000);
+  const seconds = Math.floor((diff % 60000) / 1000);
+  
+  document.getElementById('days').textContent = days;
+  document.getElementById('hours').textContent = hours;
+  document.getElementById('minutes').textContent = minutes;
+  document.getElementById('seconds').textContent = seconds;
+
+  // Frase dinámica de aniversario
+  if (days > 0) {
+    document.getElementById('counterSubtitle').textContent = `${days} días de amor incondicional y risas juntos`;
+  }
+}
+updateCounter();
+setInterval(updateCounter, 1000);
+
+// Tus 16 imágenes fijas completas
+let photos = [
+  {url: 'images/primera.jpg', caption: 'Una de las primeras fotos juntos ♥'},
+  {url: 'images/declaracion.jpg', caption: 'El momento de la declaracion'},
+  {url: 'images/pachacamac.jpg', caption: 'Nuestra aventura en Pachacámac'},
+  {url: 'images/teatro.jpg', caption: 'Disfrutando juntos del Teatro'},
+  {url: 'images/cumple.jpg', caption: 'Celebrando un hermoso cumpleaños'},
+  {url: 'images/piura.jpg', caption: 'Viajes y más recuerdos por Piura'},
+  {url: 'images/invier.jpg', caption: 'Abrazados contra el frío'},
+  {url: 'images/primerafiesta.jpg', caption: 'Nuestra primera fiesta de la Clinica'},
+  {url: 'images/parque.jpg', caption: 'Paseos bonitos por nuestro parque'},
+  {url: 'images/bicicleta.jpg', caption: 'Momentos divertidos en Bicicleta'},
+  {url: 'images/airbang.jpg', caption: 'Recuerdos especiales de concierto'},
+  {url: 'images/verano.jpg', caption: 'Días de verano'},
+  {url: 'images/matri.jpg', caption: 'Juntos en el matrimonio'},
+  {url: 'images/sinbanderas.jpg', caption: 'Conciertos y música de Sin Bandera'},
+  {url: 'images/sabado.jpg', caption: 'Nuestros tradicionales sábados'},
+  {url: 'images/segundafiesta.jpg', caption: 'Celebrando la vida'}
+];
+
+const gallery = document.getElementById('gallery');
+
+function renderGallery(){
+  gallery.innerHTML = '';
+  photos.forEach((photo, index) => {
+    const card = document.createElement('div');
+    card.className = 'photo';
+    
+    const img = document.createElement('img');
+    img.src = photo.url;
+    img.alt = 'Recuerdo de nosotros';
+    
+    const caption = document.createElement('p');
+    caption.textContent = photo.caption;
+    
+    const controls = document.createElement('div');
+    controls.className = 'photo-controls';
+
+    const up = document.createElement('button');
+    up.textContent = '←';
+    up.title = 'Mover a la izquierda';
+    up.disabled = index === 0;
+    up.onclick = () => movePhoto(index, -1);
+
+    const edit = document.createElement('button');
+    edit.textContent = 'Editar texto';
+    edit.onclick = () => {
+      const value = prompt('Escribe un pequeño recuerdo para esta foto:', photo.caption || '');
+      if(value !== null){ photo.caption = value; renderGallery(); }
+    };
+
+    const down = document.createElement('button');
+    down.textContent = '→';
+    down.title = 'Mover a la derecha';
+    down.disabled = index === photos.length - 1;
+    down.onclick = () => movePhoto(index, 1);
+
+    controls.append(up, edit, down);
+    card.append(img, caption, controls);
+    gallery.appendChild(card);
+  });
+}
+
+function movePhoto(index, direction){
+  const target = index + direction;
+  if(target < 0 || target >= photos.length) return;
+  [photos[index], photos[target]] = [photos[target], photos[index]];
+  renderGallery();
+}
+
+// Inicializar la galería con las fotos fijas
+renderGallery();
+
+// Lógica de audio cruzado (Botón flotante iwont.mp3 vs Reproductor bailando.mp3)
+const musicToggleBtn = document.getElementById('musicToggleBtn');
+
+musicToggleBtn.addEventListener('click', () => {
+  if (bgMusic.paused) {
+    bailandoPlayer.pause();
+    bgMusic.play().then(() => {
+      musicBtnText.textContent = 'Pausar música';
+    }).catch(error => console.log("Error al reproducir audio:", error));
+  } else {
+    bgMusic.pause();
+    musicBtnText.textContent = 'Activar nuestra música';
+  }
+});
+
+bailandoPlayer.addEventListener('play', () => {
+  bgMusic.pause();
+  musicBtnText.textContent = 'Activar nuestra música';
+});
+</script>
+</body>
+</html>
